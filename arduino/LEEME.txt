@@ -1,0 +1,68 @@
+Sketches del proyecto TinyML: sen(x) en Arduino Nano 33 BLE Sense
+================================================================
+
+Hay 10 carpetas: 5 modelos (M1 a M5) por 2 versiones (allops y minops).
+Cada carpeta ya trae su .ino y su model.h. No hay que editar nada.
+Cada carpeta se sube y se mide una vez. Calcular cerca de una hora en total:
+en la PC donde se probo, cada carpeta tardo unos 5 minutos en compilar la
+primera vez, aunque parezca detenida.
+
+
+Lo que se necesita
+------------------
+- Una Arduino Nano 33 BLE, Nano 33 BLE Sense o Sense Rev2.
+  El Arduino Nano clasico (ATmega328P) no sirve: no le alcanza la memoria.
+- Arduino IDE 2.x.
+- Cable USB de datos. Algunos cables solo cargan y la placa no aparece.
+- En Gestor de placas: Arduino Mbed OS Nano Boards, version 4.6.0.
+- En Gestor de bibliotecas: Chirale_TensorFlowLite, version 2.0.0.
+  No instalar a la vez otras bibliotecas de TensorFlow Lite para Arduino.
+
+No conectar nada a los pines. La placa funciona a 3.3 V.
+
+
+Pasos para cada carpeta
+-----------------------
+1. Archivo > Abrir y elegir el .ino de la carpeta.
+2. Herramientas > Placa > Arduino Mbed OS Nano Boards > Arduino Nano 33 BLE.
+3. Herramientas > Puerto: elegir el de la placa.
+4. Presionar Subir (la flecha) y esperar a que termine.
+5. Herramientas > Monitor Serie, con 115200 baudios.
+6. Esperar una linea que empiece con [tiempo] o con [error].
+   Se repite cada pocos segundos.
+7. Copiar UNA de esas lineas al archivo mediciones_tarjeta.txt.
+   Cada linea ya indica el modelo y el resolver.
+
+Orden sugerido: empezar con Sketch_M5_minops, que es el caso principal.
+
+
+Resultado esperado
+------------------
+- Si sale [tiempo], el modelo corrio. Trae tiempos, RMSE, MAE y memoria usada.
+- M3 probablemente dara [error] con AllocateTensors. Es una prediccion que hay
+  que confirmar. Si ocurre, es un resultado valido: copiar la linea y seguir.
+- Si otro modelo da [error], copiar la linea igual y avisar.
+
+
+Capturas para el reporte
+------------------------
+Guardar una captura del Monitor Serie de Sketch_M5_minops, con las lineas de
+[tiempo] visibles, y otra de Sketch_M3_minops.
+
+Curva opcional: en Sketch_M5_minops cambiar MEDIR_TIEMPO de 1 a 0, subirlo,
+abrir Herramientas > Serial Plotter, capturar las curvas real y pred, y
+regresar MEDIR_TIEMPO a 1. No dejar el Monitor Serie abierto al usar el Plotter.
+
+
+Si algo falla
+-------------
+- No aparece el puerto: probar otro cable, o presionar dos veces seguidas el
+  boton de reset de la placa y volver a elegir el puerto.
+- El Monitor Serie no muestra nada: revisar que este en 115200 baudios.
+- Error de compilacion o de subida: copiar el mensaje completo y enviarlo.
+
+
+Que devolver
+------------
+- mediciones_tarjeta.txt con las 10 lineas.
+- Las capturas.

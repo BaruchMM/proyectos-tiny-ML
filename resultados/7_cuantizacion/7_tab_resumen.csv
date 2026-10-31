@@ -1,0 +1,6 @@
+Modelo,Bytes,Tensores,Ops,Pesos,Sesgos,Activ.,Entrada,Salida
+M1,3412,12,5,float32,float32,float32,float32,float32
+M2,3412,12,5,float32,float32,float32,float32,float32
+M3,3664,18,11,float16,float16,float32,float32,float32
+M4,4056,14,7,int8,int32,int8,float32,float32
+M5,3696,12,5,int8,int32,int8,int8,int8

@@ -1,0 +1,48 @@
+=== TFLite ModelAnalyzer ===
+
+Your TFLite model has '1' subgraph(s). In the subgraph description below,
+T# represents the Tensor numbers. For example, in Subgraph#0, the FULLY_CONNECTED op takes
+tensor #0 and tensor #6 and tensor #5 as input and produces tensor #7 as output.
+
+Subgraph#0 main(T#0) -> [T#11]
+  Op#0 FULLY_CONNECTED(T#0, T#6, T#5[-9, 13832, 7993, -10802, -6608, ...]) -> [T#7]
+  Op#1 TANH(T#7) -> [T#8]
+  Op#2 FULLY_CONNECTED(T#8, T#4, T#3[-3209, 231, -2286, -2185, -1259, ...]) -> [T#9]
+  Op#3 TANH(T#9) -> [T#10]
+  Op#4 FULLY_CONNECTED(T#10, T#2, T#1[481]) -> [T#11]
+
+Tensors of Subgraph#0
+  T#0(serving_default_keras_tensor:0) shape_signature:[-1, 1], type:INT8
+  T#1(seno_tinyml_1/dense_2_1/Add) shape:[1], type:INT32 RO 4 bytes, buffer: 2, data:[481]
+  T#2(seno_tinyml_1/dense_2_1/MatMul) shape:[1, 16], type:INT8 RO 16 bytes, buffer: 3, data:[., ., ., ., ., ...]
+  T#3(seno_tinyml_1/dense_1_2/BiasAdd) shape:[16], type:INT32 RO 64 bytes, buffer: 4, data:[-3209, 231, -2286, -2185, -1259, ...]
+  T#4(seno_tinyml_1/dense_1_2/MatMul) shape:[16, 16], type:INT8 RO 256 bytes, buffer: 5, data:[P, ., ., ., M, ...]
+  T#5(seno_tinyml_1/dense_1/BiasAdd) shape:[16], type:INT32 RO 64 bytes, buffer: 6, data:[-9, 13832, 7993, -10802, -6608, ...]
+  T#6(seno_tinyml_1/dense_1/MatMul) shape:[16, 1], type:INT8 RO 16 bytes, buffer: 7, data:[., ., ., ., ., ...]
+  T#7(seno_tinyml_1/dense_1/MatMul;seno_tinyml_1/dense_1/BiasAdd) shape_signature:[-1, 16], type:INT8
+  T#8(seno_tinyml_1/dense_1/Tanh) shape_signature:[-1, 16], type:INT8
+  T#9(seno_tinyml_1/dense_1_2/MatMul;seno_tinyml_1/dense_1_2/BiasAdd) shape_signature:[-1, 16], type:INT8
+  T#10(seno_tinyml_1/dense_1_2/Tanh) shape_signature:[-1, 16], type:INT8
+  T#11(StatefulPartitionedCall_1:0) shape_signature:[-1, 1], type:INT8
+
+---------------------------------------------------------------
+Your TFLite model has '1' signature_def(s).
+
+Signature#0 key: 'serving_default'
+- Subgraph: Subgraph#0
+- Inputs: 
+    'keras_tensor' : T#0
+- Outputs: 
+    'output_0' : T#11
+
+---------------------------------------------------------------
+              Model size:       3696 bytes
+    Non-data buffer size:       3164 bytes (85.61 %)
+  Total data buffer size:        532 bytes (14.39 %)
+    (Zero value buffers):          0 bytes (00.00 %)
+
+* Buffers of TFLite model are mostly used for constant tensors.
+  And zero value buffers are buffers filled with zeros.
+  Non-data buffers area are used to store operators, subgraphs and etc.
+  You can find more details from https://github.com/tensorflow/tensorflow/blob/master/tensorflow/lite/schema/schema.fbs
+

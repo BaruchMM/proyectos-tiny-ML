@@ -1,0 +1,13 @@
+Modelo,Forma,Elementos,Tipo,Bytes
+M1,1,1,float32,4
+M1,64,64,float32,256
+M1,1x64,64,float32,256
+M1,64x1,64,float32,256
+M1,64,64,float32,256
+M1,64x64,4096,float32,16384
+M2,1,1,float32,4
+M2,64,64,float32,256
+M2,64x1,64,float32,256
+M2,64,64,float32,256
+M2,1x64,64,float32,256
+M2,64x64,4096,int8,4096

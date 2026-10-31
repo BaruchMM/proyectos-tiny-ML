@@ -1,0 +1,11 @@
+modelo,resolver,n,min_us,max_us,prom_us,desv_us,rmse_placa,mae_placa
+M1,allops,100,pendiente,pendiente,pendiente,pendiente,pendiente,pendiente
+M1,minops,100,pendiente,pendiente,pendiente,pendiente,pendiente,pendiente
+M2,allops,100,pendiente,pendiente,pendiente,pendiente,pendiente,pendiente
+M2,minops,100,pendiente,pendiente,pendiente,pendiente,pendiente,pendiente
+M3,allops,100,pendiente,pendiente,pendiente,pendiente,pendiente,pendiente
+M3,minops,100,pendiente,pendiente,pendiente,pendiente,pendiente,pendiente
+M4,allops,100,pendiente,pendiente,pendiente,pendiente,pendiente,pendiente
+M4,minops,100,pendiente,pendiente,pendiente,pendiente,pendiente,pendiente
+M5,allops,100,pendiente,pendiente,pendiente,pendiente,pendiente,pendiente
+M5,minops,100,pendiente,pendiente,pendiente,pendiente,pendiente,pendiente

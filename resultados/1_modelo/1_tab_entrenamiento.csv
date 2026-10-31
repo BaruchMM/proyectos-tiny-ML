@@ -1,0 +1,10 @@
+Parametro,Valor
+Arquitectura,1-16-16-1
+Activacion en capas ocultas,tanh
+Optimizador,Adam
+Learning rate,0.005
+Tamano de lote,64
+Perdida,mse
+Epocas maximas,200
+Paciencia de EarlyStopping,20
+Epocas ejecutadas,118

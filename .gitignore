@@ -1,0 +1,19 @@
+# Entorno de Python
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Se genera con ARMAR_ZIP = True en Proyecto_1.py
+TinyML_Proyecto_1.zip
+
+# Practica con el Nano prestado, no es parte de la entrega
+practica_nano/
+
+# Configuracion local
+.vscode/
+.claude/settings.local.json
+
+# Sistema
+desktop.ini
+Thumbs.db

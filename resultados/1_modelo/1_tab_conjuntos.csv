@@ -1,0 +1,4 @@
+Conjunto,Muestras,Intervalo,Muestreo,Etiqueta
+Entrenamiento,1600,"[0, 2pi]",uniforme aleatorio,sen(x) + ruido 0.015
+Validacion,320,"[0, 2pi]",uniforme aleatorio,sen(x)
+Prueba,256,"[0, 2pi]",rejilla regular,sen(x)

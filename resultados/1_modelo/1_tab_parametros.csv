@@ -1,0 +1,5 @@
+Capa,W + b,Parametros,Bytes FP32
+dense,1x16 + 16,32,128
+dense_1,16x16 + 16,272,1088
+dense_2,16x1 + 1,17,68
+TOTAL,,321,1284
