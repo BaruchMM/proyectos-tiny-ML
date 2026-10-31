@@ -6,7 +6,7 @@ Como leerlo:
 
 - `[x]` esta hecho y el archivo existe en `resultados/` o `arduino/`.
 - `[ ]` falta. Si dice PARCIAL, existe algo pero no cumple el objetivo completo.
-- (IDE) = Arduino IDE, no necesita tarjeta. (TARJETA) = sesion con una Nano 33 BLE; el Nano con CH340 prestado (ATmega328P, 2 KB de RAM) no sirve. (ANALISIS) = redactar, los datos ya existen.
+- (IDE) = Arduino IDE, no necesita tarjeta. (TARJETA) = sesion con una Nano 33 BLE; el Nano con CH340 prestado (ATmega328P, 2 KB de RAM) no sirve. (ANALISIS) = redactar, los datos ya existen. (DATOS TARJETA) = trabajo sin tarjeta que espera sus mediciones.
 - Los apartados del reporte van del 1 al 11. Los apartados 1 a 8 coinciden con las Actividades 1 a 8.
 
 `objetivos proyecto.md` no incluye el enunciado de las Actividades 1 a 6: empieza en la Parte A de la Actividad 7. Esas actividades salen aqui del resumen de `Claude.md` y de las secciones 7.1 a 7.6 del enunciado, asi que conviene cotejarlas con el original.
@@ -61,8 +61,8 @@ Como leerlo:
 - [x] Codigo de cronometraje: `micros()` alrededor de `Invoke()`, 100 inferencias tras calentamiento, sin `Serial.print` en la region medida. Los sketches ya salen con `MEDIR_TIEMPO` en 1 y cada linea `[tiempo]` trae tiempos, RMSE, MAE y arena usada. Compila, pero no se ha probado en una tarjeta.
 - [x] Instrucciones para la sesion con la tarjeta: `arduino/LEEME.txt`.
 - [ ] (TARJETA) Subir las 10 carpetas y copiar una linea de cada una a `mediciones_tarjeta.txt`.
-- [ ] Pasar esas lineas a `4_tab_tiempos.csv` y a `3_tab_arduino.csv`. El RMSE en placa debe parecerse a "RMSE malla placa (Python)" de `7_tab_despliegue.csv`.
-- [ ] Analizar que factores influyen en el tiempo. No asumir que INT8 sea mas rapido: el nRF52840 tiene FPU, hay que medirlo.
+- [ ] (DATOS TARJETA) Pasar esas lineas a `4_tab_tiempos.csv` y a `3_tab_arduino.csv`. El RMSE en placa debe parecerse a "RMSE malla placa (Python)" de `7_tab_despliegue.csv`.
+- [ ] (DATOS TARJETA) Analizar que factores influyen en el tiempo. No asumir que INT8 sea mas rapido: el nRF52840 tiene FPU, hay que medirlo.
 
 ## Apartado 5. Operadores
 
@@ -70,7 +70,7 @@ Como leerlo:
 - [x] Codigo con `MicroMutableOpResolver<N>`: N=2 en M1, M2 y M5; N=3 en M3; N=4 en M4.
 - [x] Flash y RAM entre resolvers: `5_tab_resolvers.csv`.
 - [ ] (TARJETA) Comparar tiempo de inferencia y correccion de resultados.
-- [ ] Discutir resultados.
+- [ ] (DATOS TARJETA) Discutir resultados.
 
 ## Apartado 6. Generalizacion
 
@@ -109,7 +109,7 @@ Como leerlo:
 - [x] Flash y RAM de los cinco modelos: `7_tab_despliegue.csv`.
 - [ ] (TARJETA) Tiempo promedio de los modelos compatibles.
 - [ ] (ANALISIS) Distinguir precision de almacenamiento de precision de ejecucion (M3 guarda float16 y calcula en float32).
-- [ ] Determinar el mejor compromiso entre tamano, precision y costo. Depende de las mediciones.
+- [ ] (DATOS TARJETA) Determinar el mejor compromiso entre tamano, precision y costo.
 - [ ] (ANALISIS) Explicar por que misma arquitectura y mismos parametros dan FlatBuffers distintos.
 - [ ] (ANALISIS) Explicar por que `Optimize.DEFAULT` no garantiza cuantizar todo a INT8.
 
@@ -153,7 +153,7 @@ Como leerlo:
 ## Apartado 10. Conclusiones
 
 - [ ] Ventajas, limitaciones y consideraciones para desplegar en microcontroladores.
-- [ ] Compromisos entre tamano, precision, memoria y tiempo. Depende de las mediciones.
+- [ ] (DATOS TARJETA) Compromisos entre tamano, precision, memoria y tiempo.
 
 ## Apartado 11. Archivos y entrega
 

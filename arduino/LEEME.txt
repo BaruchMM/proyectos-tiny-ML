@@ -3,6 +3,8 @@ Sketches del proyecto TinyML: sen(x) en Arduino Nano 33 BLE Sense
 
 Hay 10 carpetas: 5 modelos (M1 a M5) por 2 versiones (allops y minops).
 Cada carpeta ya trae su .ino y su model.h. No hay que editar nada.
+No hace falta correr Proyecto_1.py ni ningun otro script de Python: los modelos
+ya estan generados, y reentrenar podria cambiarlos respecto al reporte.
 Cada carpeta se sube y se mide una vez. Calcular cerca de una hora en total:
 en la PC donde se probo, cada carpeta tardo unos 5 minutos en compilar la
 primera vez, aunque parezca detenida.
@@ -33,12 +35,16 @@ Pasos para cada carpeta
 7. Copiar UNA de esas lineas al archivo mediciones_tarjeta.txt.
    Cada linea ya indica el modelo y el resolver.
 
-Orden sugerido: empezar con Sketch_M5_minops, que es el caso principal.
+Empezar con Sketch_M5_minops y enviar esa linea antes de seguir con las demas.
+Estos sketches compilan, pero aun no se han probado en una tarjeta real: si esa
+primera prueba falla, conviene corregirlo antes de gastar tiempo en las otras 9.
 
 
 Resultado esperado
 ------------------
 - Si sale [tiempo], el modelo corrio. Trae tiempos, RMSE, MAE y memoria usada.
+- El rmse deberia quedar cerca de 0.0140 en M1 y M2, 0.0143 en M3, y 0.0724 en
+  M4 y M5. Si es muy distinto, copiar la linea igual y avisar.
 - M3 probablemente dara [error] con AllocateTensors. Es una prediccion que hay
   que confirmar. Si ocurre, es un resultado valido: copiar la linea y seguir.
 - Si otro modelo da [error], copiar la linea igual y avisar.
