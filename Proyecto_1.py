@@ -67,6 +67,9 @@ PATIENCE = 20
 
 # Cuantizacion: nombre de archivo y descripcion por estrategia
 N_REP = 256      # mismo numero de muestras en todos los modelos INT8
+# El kernel FULLY_CONNECTED int8 de Chirale 2.0.0 usa una sola escala de pesos por capa
+# (filter->params.scale). Con una escala por neurona la placa predice mal sin dar error.
+DENSE_POR_CANAL = False
 MODELOS = {
     'M1': ('fp32', 'FP32 sin cuantizar'),
     'M2': ('rango_dinamico', 'rango dinamico'),
@@ -262,8 +265,10 @@ def make_rep_fn(lo, hi, n=N_REP):
     return gen
 
 
-def make_converter(keras_model, strategy, rep_fn=None):
+def make_converter(keras_model, strategy, rep_fn=None, por_canal=DENSE_POR_CANAL):
     converter = tf.lite.TFLiteConverter.from_keras_model(keras_model)
+    if strategy in ('M4', 'M5'):  # atributo privado del conversor (TF 2.21)
+        converter._experimental_disable_per_channel_quantization_for_dense_layers = not por_canal
     if strategy == 'M1':      # sin cuantizar, FP32
         pass
     elif strategy == 'M2':    # rango dinamico
@@ -284,9 +289,9 @@ def make_converter(keras_model, strategy, rep_fn=None):
     return converter
 
 
-def convert_model(keras_model, strategy, rep_fn=None):
+def convert_model(keras_model, strategy, rep_fn=None, por_canal=DENSE_POR_CANAL):
     with contextlib.redirect_stdout(io.StringIO()):   # silencia el log de conversion
-        return make_converter(keras_model, strategy, rep_fn).convert()
+        return make_converter(keras_model, strategy, rep_fn, por_canal).convert()
 
 
 def analyzer_text(blob):
@@ -827,6 +832,21 @@ for key, blob in tflite_models.items():
     rows.append([key, len(blob), round((size_m1 - len(blob)) / size_m1 * 100, 1), tipos,
                  metrics[key]['RMSE'], metrics[key]['MAE']])
 guardar_tab(7, 'comparacion', ['Modelo', 'Bytes', 'Reduccion %', 'Entrada/Salida', 'RMSE', 'MAE'], rows)
+
+# Escala de pesos por neurona contra una por capa: el FlatBuffer cambia y la placa solo soporta la segunda
+rows = []
+for por_canal in (True, False):
+    blob = tflite_models['M5'] if por_canal == DENSE_POR_CANAL else convert_model(model, 'M5', rep_fn_A, por_canal)
+    if por_canal != DENSE_POR_CANAL:
+        guardar_modelo(7, 'M5_int8_' + ('por_canal' if por_canal else 'por_capa'), blob)
+    filas = collect_tensors(blob)[0]
+    pesos = [r for r in filas if r['rol'] == 'constante' and not r['es_bias']]
+    m = error_metrics(y_true, predict_tflite(blob, X_test, verbose=False))
+    rows.append(['por neurona' if por_canal else 'por capa', len(blob),
+                 ' '.join(str(r['n_scales']) for r in sorted(pesos, key=lambda r: r['idx'])),
+                 'si' if por_canal == DENSE_POR_CANAL else 'no', m['RMSE'], m['MAE']])
+guardar_tab(7, 'escala_pesos', ['Escala de pesos (M5)', 'Bytes', 'Escalas por tensor de pesos',
+                                'Usado en arduino/', 'RMSE', 'MAE'], rows)
 
 # Compromiso entre tamano, precision y costo (se completa con las mediciones de Arduino)
 # La placa evalua N_TIMING_RUNS puntos: se repite esa malla en Python para comparar sin sesgo

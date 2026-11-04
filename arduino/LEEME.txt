@@ -43,8 +43,8 @@ primera prueba falla, conviene corregirlo antes de gastar tiempo en las otras 9.
 Resultado esperado
 ------------------
 - Si sale [tiempo], el modelo corrio. Trae tiempos, RMSE, MAE y memoria usada.
-- El rmse deberia quedar cerca de 0.0140 en M1 y M2, 0.0143 en M3, y 0.0724 en
-  M4 y M5. Si es muy distinto, copiar la linea igual y avisar.
+- El rmse deberia quedar cerca de 0.0140 en M1 y M2, y 0.0995 en M4 y M5.
+  Si es muy distinto, copiar la linea igual y avisar.
 - M3 probablemente dara [error] con AllocateTensors. Es una prediccion que hay
   que confirmar. Si ocurre, es un resultado valido: copiar la linea y seguir.
 - Si otro modelo da [error], copiar la linea igual y avisar.

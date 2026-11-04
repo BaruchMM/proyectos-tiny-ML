@@ -6,9 +6,9 @@ tensor #0 as input and produces tensor #7 as output.
 
 Subgraph#0 main(T#0) -> [T#13]
   Op#0 QUANTIZE(T#0) -> [T#7]
-  Op#1 FULLY_CONNECTED(T#7, T#6, T#5[-9, 13832, 7993, -10802, -6608, ...]) -> [T#8]
+  Op#1 FULLY_CONNECTED(T#7, T#6, T#5[-7, 1917, 3163, -4391, -2551, ...]) -> [T#8]
   Op#2 TANH(T#8) -> [T#9]
-  Op#3 FULLY_CONNECTED(T#9, T#4, T#3[-3209, 231, -2286, -2185, -1259, ...]) -> [T#10]
+  Op#3 FULLY_CONNECTED(T#9, T#4, T#3[-2341, 229, -1388, -1303, -949, ...]) -> [T#10]
   Op#4 TANH(T#10) -> [T#11]
   Op#5 FULLY_CONNECTED(T#11, T#2, T#1[481]) -> [T#12]
   Op#6 DEQUANTIZE(T#12) -> [T#13]
@@ -17,10 +17,10 @@ Tensors of Subgraph#0
   T#0(serving_default_keras_tensor:0) shape_signature:[-1, 1], type:FLOAT32
   T#1(seno_tinyml_1/dense_2_1/Add) shape:[1], type:INT32 RO 4 bytes, buffer: 2, data:[481]
   T#2(seno_tinyml_1/dense_2_1/MatMul) shape:[1, 16], type:INT8 RO 16 bytes, buffer: 3, data:[., ., ., ., ., ...]
-  T#3(seno_tinyml_1/dense_1_2/BiasAdd) shape:[16], type:INT32 RO 64 bytes, buffer: 4, data:[-3209, 231, -2286, -2185, -1259, ...]
-  T#4(seno_tinyml_1/dense_1_2/MatMul) shape:[16, 16], type:INT8 RO 256 bytes, buffer: 5, data:[P, ., ., ., M, ...]
-  T#5(seno_tinyml_1/dense_1/BiasAdd) shape:[16], type:INT32 RO 64 bytes, buffer: 6, data:[-9, 13832, 7993, -10802, -6608, ...]
-  T#6(seno_tinyml_1/dense_1/MatMul) shape:[16, 1], type:INT8 RO 16 bytes, buffer: 7, data:[., ., ., ., ., ...]
+  T#3(seno_tinyml_1/dense_1_2/BiasAdd) shape:[16], type:INT32 RO 64 bytes, buffer: 4, data:[-2341, 229, -1388, -1303, -949, ...]
+  T#4(seno_tinyml_1/dense_1_2/MatMul) shape:[16, 16], type:INT8 RO 256 bytes, buffer: 5, data:[;, ., ., ], 8, ...]
+  T#5(seno_tinyml_1/dense_1/BiasAdd) shape:[16], type:INT32 RO 64 bytes, buffer: 6, data:[-7, 1917, 3163, -4391, -2551, ...]
+  T#6(seno_tinyml_1/dense_1/MatMul) shape:[16, 1], type:INT8 RO 16 bytes, buffer: 7, data:[., ., ., 4, 1, ...]
   T#7(tfl.quantize) shape_signature:[-1, 1], type:INT8
   T#8(seno_tinyml_1/dense_1/MatMul;seno_tinyml_1/dense_1/BiasAdd) shape_signature:[-1, 16], type:INT8
   T#9(seno_tinyml_1/dense_1/Tanh) shape_signature:[-1, 16], type:INT8
@@ -40,9 +40,9 @@ Signature#0 key: 'serving_default'
     'output_0' : T#13
 
 ---------------------------------------------------------------
-              Model size:       4056 bytes
-    Non-data buffer size:       3524 bytes (86.88 %)
-  Total data buffer size:        532 bytes (13.12 %)
+              Model size:       3336 bytes
+    Non-data buffer size:       2804 bytes (84.05 %)
+  Total data buffer size:        532 bytes (15.95 %)
     (Zero value buffers):          0 bytes (00.00 %)
 
 * Buffers of TFLite model are mostly used for constant tensors.

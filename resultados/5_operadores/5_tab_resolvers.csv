@@ -1,21 +1,21 @@
 Modelo,Metrica,AllOpsResolver,MicroMutableOpResolver,Diferencia
 M1,Flash (bytes),351680,143296,208384.0
 M1,RAM estatica (bytes),76912,71296,5616.0
-M1,Tiempo promedio (us),pendiente,pendiente,pendiente
-M1,RMSE en placa,pendiente,pendiente,pendiente
+M1,Tiempo promedio (us),265.44,266.87,-1.4300000000000068
+M1,RMSE en placa,0.01404,0.01404,0.0
 M2,Flash (bytes),351680,143296,208384.0
 M2,RAM estatica (bytes),76912,71296,5616.0
-M2,Tiempo promedio (us),pendiente,pendiente,pendiente
-M2,RMSE en placa,pendiente,pendiente,pendiente
+M2,Tiempo promedio (us),265.68,266.84,-1.1599999999999682
+M2,RMSE en placa,0.01404,0.01404,0.0
 M3,Flash (bytes),351928,144504,207424.0
 M3,RAM estatica (bytes),76912,71344,5568.0
-M3,Tiempo promedio (us),pendiente,pendiente,pendiente
-M3,RMSE en placa,pendiente,pendiente,pendiente
-M4,Flash (bytes),352320,147232,205088.0
+M3,Tiempo promedio (us),no_corre,no_corre,pendiente
+M3,RMSE en placa,no_corre,no_corre,pendiente
+M4,Flash (bytes),351600,146512,205088.0
 M4,RAM estatica (bytes),76912,71376,5536.0
 M4,Tiempo promedio (us),pendiente,pendiente,pendiente
 M4,RMSE en placa,pendiente,pendiente,pendiente
-M5,Flash (bytes),351960,143584,208376.0
+M5,Flash (bytes),351240,142864,208376.0
 M5,RAM estatica (bytes),76912,71296,5616.0
 M5,Tiempo promedio (us),pendiente,pendiente,pendiente
 M5,RMSE en placa,pendiente,pendiente,pendiente

@@ -72,6 +72,14 @@ Errores contra sen(x) en [0, 2pi] (corrida anterior; recalcular tras reentrenar)
 
 Parametros de cuantizacion de M5 (calibrado en [0, 2pi]): entrada scale 0.0246399, zero_point -128, rango [0, 6.2832]; salida scale 0.00791485, zero_point -2; activaciones antes de la tanh: scale 0.041064 (zp -4) y 0.018104 (zp -11); salidas de las tanh: scale 0.0078125 (1/128), zp 0. Pesos int8 con zero_point 0 y escala por canal; sesgos int32 con escala = escala_entrada x escala_peso.
 
+## Resultados en la placa y correccion INT8 (2026-11-03)
+
+- Sesion 1 en la Nano 33 BLE Sense del companero: M1 y M2 corren bien (rmse 0.01404, igual que Python en la malla de 100 puntos; arena usada 1024 bytes; unos 266 us por inferencia). M3 falla en AllocateTensors porque dequantize_common.cpp no acepta float16 (confirmado). M4 y M5 corrian pero predecian -0.9973 y +1.0210 (limites de la salida int8), con rmse 1.635.
+- Causa verificada: el kernel FULLY_CONNECTED int8 de Chirale 2.0.0 usa una sola escala de pesos por capa (filter->params.scale), y TF 2.21 cuantiza las capas densas con una escala por neurona. Una emulacion entera reprodujo la salida de la placa en 128 de 128 puntos. Detalle en resultados/7_cuantizacion/evidencias/7_validacion_kernel_fc.txt.
+- Correccion: DENSE_POR_CANAL = False en Proyecto_1.py; todas las conversiones INT8 usan una escala por capa. M5 pasa de 3696 a 2976 bytes y su RMSE de 0.0750 a 0.0969; ahora M4 y M5 si reducen el archivo respecto a M1. Los numeros de Colab de las secciones de abajo son de la version con escala por neurona.
+- arena_used_bytes si existe en Chirale 2.0.0.
+- Falta repetir M4 y M5 (allops y minops) en la placa. RMSE esperado en la malla de 100 puntos: 0.0995.
+
 ## Hallazgos para el reporte
 
 Verificados con la salida del notebook:

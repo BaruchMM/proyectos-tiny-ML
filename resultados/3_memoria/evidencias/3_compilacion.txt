@@ -31,21 +31,21 @@ Las variables Globales usan 71344 bytes (27%) de la memoria dinamica, dejando 19
 
 
 ===== Sketch_M4_allops =====
-El Sketch usa 352320 bytes (35%) del espacio de almacenamiento de programa. El maximo es 983040 bytes.
+El Sketch usa 351600 bytes (35%) del espacio de almacenamiento de programa. El maximo es 983040 bytes.
 Las variables Globales usan 76912 bytes (29%) de la memoria dinamica, dejando 185232 bytes para las variables locales. El maximo es 262144 bytes.
 
 
 ===== Sketch_M4_minops =====
-El Sketch usa 147232 bytes (14%) del espacio de almacenamiento de programa. El maximo es 983040 bytes.
+El Sketch usa 146512 bytes (14%) del espacio de almacenamiento de programa. El maximo es 983040 bytes.
 Las variables Globales usan 71376 bytes (27%) de la memoria dinamica, dejando 190768 bytes para las variables locales. El maximo es 262144 bytes.
 
 
 ===== Sketch_M5_allops =====
-El Sketch usa 351960 bytes (35%) del espacio de almacenamiento de programa. El maximo es 983040 bytes.
+El Sketch usa 351240 bytes (35%) del espacio de almacenamiento de programa. El maximo es 983040 bytes.
 Las variables Globales usan 76912 bytes (29%) de la memoria dinamica, dejando 185232 bytes para las variables locales. El maximo es 262144 bytes.
 
 
 ===== Sketch_M5_minops =====
-El Sketch usa 143584 bytes (14%) del espacio de almacenamiento de programa. El maximo es 983040 bytes.
+El Sketch usa 142864 bytes (14%) del espacio de almacenamiento de programa. El maximo es 983040 bytes.
 Las variables Globales usan 71296 bytes (27%) de la memoria dinamica, dejando 190848 bytes para las variables locales. El maximo es 262144 bytes.
 

@@ -52,7 +52,7 @@ Como leerlo:
 - [x] Sketches con `kTensorArenaSize` de 24 KiB: `arduino/`.
 - [x] Entorno de compilacion: placa Arduino Nano 33 BLE, paquete `mbed_nano` 4.6.0 y `Chirale_TensorFLowLite` 2.0.0.
 - [x] Las 10 carpetas compilan con `compilar_sketches.py`: Flash y RAM estatica en `3_tab_arduino.csv`, salida del compilador en `3_memoria/evidencias/3_compilacion.txt`. `arduino-cli` reprodujo exacto la medicion del IDE de M5 minops. La red no cambia: estos numeros valen para la familia Nano 33 BLE mientras no cambien los sketches ni las versiones.
-- [ ] (TARJETA) Anotar `arena_used_bytes`. La llamada compila con Chirale 2.0.0; falta leer el valor en la tarjeta.
+- [ ] PARCIAL (TARJETA) `arena_used_bytes`: 1024 en M1 y M2. Faltan M4 y M5 corregidos.
 - [ ] (ANALISIS) Explicar por que difieren los bytes teoricos y el archivo.
 - [ ] Discutir `.tflite`, Flash, RAM estatica y arena. La arena es un arreglo global: ya esta contada en la RAM estatica.
 
@@ -60,8 +60,8 @@ Como leerlo:
 
 - [x] Codigo de cronometraje: `micros()` alrededor de `Invoke()`, 100 inferencias tras calentamiento, sin `Serial.print` en la region medida. Los sketches ya salen con `MEDIR_TIEMPO` en 1 y cada linea `[tiempo]` trae tiempos, RMSE, MAE y arena usada. Compila, pero no se ha probado en una tarjeta.
 - [x] Instrucciones para la sesion con la tarjeta: `arduino/LEEME.txt`.
-- [ ] (TARJETA) Subir las 10 carpetas y copiar una linea de cada una a `mediciones_tarjeta.txt`.
-- [ ] (DATOS TARJETA) Pasar esas lineas a `4_tab_tiempos.csv` y a `3_tab_arduino.csv`. El RMSE en placa debe parecerse a "RMSE malla placa (Python)" de `7_tab_despliegue.csv`.
+- [ ] PARCIAL (TARJETA) Sesion 1 (2026-11-03): M1, M2 y M3 listos. Repetir `Sketch_M4_*` y `Sketch_M5_*` con los modelos corregidos.
+- [ ] PARCIAL (DATOS TARJETA) Sesion 1 ya esta en `4_tab_tiempos.csv` y `3_tab_arduino.csv` (resumen en `4_rendimiento/evidencias/4_sesion1_resumen.txt`). Faltan M4 y M5. El RMSE en placa debe parecerse a "RMSE malla placa (Python)" de `7_tab_despliegue.csv`.
 - [ ] (DATOS TARJETA) Analizar que factores influyen en el tiempo. No asumir que INT8 sea mas rapido: el nRF52840 tiene FPU, hay que medirlo.
 
 ## Apartado 5. Operadores
@@ -101,11 +101,12 @@ Como leerlo:
 
 - [x] Tabla unica con tamano, reduccion, tipo de E/S, RMSE y MAE: `7_tab_comparacion.csv`.
 - [x] Figuras: `7_fig_tamanos.png`, `7_fig_errores.png`, `7_fig_predicciones.png`.
-- [ ] (ANALISIS) Decidir el mas pequeno y el mas preciso. M1 y M2 ganan ambos: ninguna estrategia redujo el archivo (M3 -7.4%, M4 -18.9%, M5 -8.3%).
+- [ ] (ANALISIS) Decidir el mas pequeno y el mas preciso. Con escala por capa, M5 es el mas pequeno (2976 bytes, -12.8%) y M1 y M2 los mas precisos. Con escala por neurona ninguna estrategia reducia el archivo: comparar con `7_tab_escala_pesos.csv`.
 
 ### Parte D. Despliegue y compatibilidad
 
-- [ ] (TARJETA) Identificar que modelos corren en TFLM. Compilar no basta: `AllocateTensors` e `Invoke` ocurren en ejecucion. Prediccion sin medir: M3 fallaria en `AllocateTensors`, porque `DequantizePrepare` (`dequantize_common.cpp`, lineas 44 a 46 de Chirale 2.0.0) solo acepta entrada int8, int16 o uint8, y M3 usa float16.
+- [ ] PARCIAL (TARJETA) Identificar que modelos corren en TFLM. M1 y M2 corren bien. M3 falla en `AllocateTensors` (confirmado: `dequantize_common.cpp:46` no acepta float16). M4 y M5 con escala por neurona corrian pero predecian mal, porque el kernel `FULLY_CONNECTED` int8 de Chirale usa una sola escala por capa (`7_cuantizacion/evidencias/7_validacion_kernel_fc.txt`). Falta confirmar M4 y M5 corregidos.
+- [x] Escala de pesos por neurona contra por capa: `7_tab_escala_pesos.csv`.
 - [x] Flash y RAM de los cinco modelos: `7_tab_despliegue.csv`.
 - [ ] (TARJETA) Tiempo promedio de los modelos compatibles.
 - [ ] (ANALISIS) Distinguir precision de almacenamiento de precision de ejecucion (M3 guarda float16 y calcula en float32).
@@ -164,7 +165,7 @@ Se suben dos archivos: el PDF y el zip. El zip se arma con `ARMAR_ZIP = True` en
 - [x] Graficas y tablas como archivos: `resultados/`.
 - [ ] Generar `Proyecto_1_final.ipynb` desde `Proyecto_1.py` con sus salidas. El enunciado pide un notebook y el original no se toca. El zip avisa si falta.
 - [x] Evidencias de compilacion: `3_memoria/evidencias/3_compilacion.txt`.
-- [ ] (TARJETA) Evidencias de ejecucion en `4_rendimiento/evidencias/`: `mediciones_tarjeta.txt` y capturas.
+- [ ] PARCIAL (TARJETA) Evidencias de ejecucion en `4_rendimiento/evidencias/`. Hay un resumen de la sesion 1; falta guardar el log completo del monitor serie y la sesion 2 de M4 y M5.
 - [ ] Reporte en PDF.
 - [ ] Armar el zip al final.
 

@@ -1,10 +1,10 @@
 modelo,resolver,n,min_us,max_us,prom_us,desv_us,rmse_placa,mae_placa
-M1,allops,100,pendiente,pendiente,pendiente,pendiente,pendiente,pendiente
-M1,minops,100,pendiente,pendiente,pendiente,pendiente,pendiente,pendiente
-M2,allops,100,pendiente,pendiente,pendiente,pendiente,pendiente,pendiente
-M2,minops,100,pendiente,pendiente,pendiente,pendiente,pendiente,pendiente
-M3,allops,100,pendiente,pendiente,pendiente,pendiente,pendiente,pendiente
-M3,minops,100,pendiente,pendiente,pendiente,pendiente,pendiente,pendiente
+M1,allops,1000,250,304,265.44,16.1,0.01404,0.01188
+M1,minops,1000,251,304,266.87,14.43,0.01404,0.01188
+M2,allops,1000,250,412,265.68,16.7,0.01404,0.01188
+M2,minops,1000,252,305,266.84,15.41,0.01404,0.01188
+M3,allops,100,no_corre,no_corre,no_corre,no_corre,no_corre,no_corre
+M3,minops,100,no_corre,no_corre,no_corre,no_corre,no_corre,no_corre
 M4,allops,100,pendiente,pendiente,pendiente,pendiente,pendiente,pendiente
 M4,minops,100,pendiente,pendiente,pendiente,pendiente,pendiente,pendiente
 M5,allops,100,pendiente,pendiente,pendiente,pendiente,pendiente,pendiente

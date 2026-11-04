@@ -1,0 +1,98 @@
+Sesion 1 en la Nano 33 BLE Sense (2026-11-03), transcrita del monitor serie.
+Cada linea [tiempo] resume 100 inferencias; se capturaron 10 por sketch (1000 inferencias).
+M3: [error] AllocateTensors; dequantize_common.cpp:46 no acepta entrada float16.
+M4 y M5 corrieron la version con escala de pesos por neurona: rmse=1.63509 mae=1.57088,
+arena_usada 1104 (M4) y 964 (M5). Esos modelos ya no son los de arduino/.
+M1 y M2: rmse=0.01404 mae=0.01188 arena_usada=1024.
+
+Agregado por sketch (min, max, promedio, desviacion combinada):
+M1 allops n=1000 min_us=250 max_us=304 prom_us=265.44 desv_us=16.10
+M1 minops n=1000 min_us=251 max_us=304 prom_us=266.87 desv_us=14.43
+M2 allops n=1000 min_us=250 max_us=412 prom_us=265.68 desv_us=16.70
+M2 minops n=1000 min_us=252 max_us=305 prom_us=266.84 desv_us=15.41
+M4 allops n=1000 min_us=1188 max_us=1468 prom_us=1200.44 desv_us=17.77
+M4 minops n=1000 min_us=1147 max_us=1426 prom_us=1157.62 desv_us=16.66
+M5 allops n=1000 min_us=1165 max_us=1332 prom_us=1175.92 desv_us=15.37
+M5 minops n=1000 min_us=1190 max_us=1435 prom_us=1201.11 desv_us=16.12
+
+Lineas [tiempo] (modelo resolver min_us max_us prom_us desv_us):
+M5 minops 1190 1222 1201.130 12.277
+M5 minops 1190 1240 1201.210 18.256
+M5 minops 1190 1435 1203.490 28.462
+M5 minops 1190 1222 1200.630 11.909
+M5 minops 1191 1223 1201.090 11.979
+M5 minops 1191 1222 1200.950 11.863
+M5 minops 1190 1222 1201.150 12.140
+M5 minops 1190 1240 1200.240 15.545
+M5 minops 1190 1240 1200.510 18.117
+M5 minops 1190 1236 1200.660 12.342
+M5 allops 1165 1197 1175.640 11.674
+M5 allops 1166 1197 1175.070 11.137
+M5 allops 1165 1198 1175.130 11.613
+M5 allops 1165 1301 1177.670 23.346
+M5 allops 1165 1215 1175.350 16.722
+M5 allops 1165 1197 1175.710 11.767
+M5 allops 1166 1197 1175.050 11.330
+M5 allops 1166 1198 1175.760 11.427
+M5 allops 1165 1332 1178.230 23.112
+M5 allops 1165 1214 1175.580 14.086
+M1 minops 252 286 266.980 12.733
+M1 minops 252 286 267.210 12.497
+M1 minops 252 285 266.920 12.300
+M1 minops 253 303 266.650 13.641
+M1 minops 252 303 266.300 18.579
+M1 minops 251 304 266.890 19.921
+M1 minops 252 302 267.180 14.882
+M1 minops 252 286 266.930 12.569
+M1 minops 252 286 266.950 12.433
+M1 minops 252 286 266.670 12.217
+M1 allops 250 304 265.540 17.560
+M1 allops 251 301 265.370 20.308
+M1 allops 250 302 265.710 16.886
+M1 allops 251 284 265.280 12.245
+M1 allops 250 284 265.670 12.212
+M1 allops 250 284 265.330 12.297
+M1 allops 250 301 265.190 13.487
+M1 allops 251 302 264.870 18.711
+M1 allops 251 302 265.340 19.562
+M1 allops 250 301 266.140 14.892
+M4 minops 1148 1278 1158.240 17.938
+M4 minops 1147 1196 1156.430 16.452
+M4 minops 1148 1180 1157.000 11.166
+M4 minops 1148 1180 1157.190 11.118
+M4 minops 1149 1180 1157.510 10.986
+M4 minops 1148 1181 1156.830 10.994
+M4 minops 1148 1180 1156.780 11.019
+M4 minops 1148 1197 1157.220 16.966
+M4 minops 1148 1285 1159.180 20.953
+M4 minops 1148 1426 1159.870 28.880
+M4 allops 1189 1305 1201.180 15.843
+M4 allops 1189 1239 1199.190 16.175
+M4 allops 1189 1239 1199.800 17.541
+M4 allops 1189 1221 1199.140 11.502
+M4 allops 1189 1221 1200.280 11.723
+M4 allops 1190 1221 1200.740 11.821
+M4 allops 1189 1468 1201.930 29.116
+M4 allops 1189 1329 1202.800 22.477
+M4 allops 1188 1238 1199.340 18.166
+M4 allops 1188 1238 1199.970 15.158
+M2 minops 252 304 266.820 19.514
+M2 minops 252 302 266.750 14.779
+M2 minops 252 286 266.900 12.518
+M2 minops 252 286 266.930 12.344
+M2 minops 253 286 266.800 12.379
+M2 minops 252 303 267.140 16.940
+M2 minops 252 302 266.210 20.198
+M2 minops 252 305 266.820 17.615
+M2 minops 252 286 267.000 12.410
+M2 minops 252 286 267.040 12.413
+M2 allops 251 301 265.830 20.387
+M2 allops 250 300 266.300 16.137
+M2 allops 251 284 265.040 12.269
+M2 allops 250 284 265.340 12.323
+M2 allops 250 412 267.410 22.693
+M2 allops 250 301 265.710 14.647
+M2 allops 250 302 264.900 19.318
+M2 allops 250 302 265.370 19.133
+M2 allops 251 300 265.230 13.779
+M2 allops 251 283 265.700 12.187
